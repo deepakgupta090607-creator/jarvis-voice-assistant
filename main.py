@@ -92,7 +92,7 @@ WEBSITES = {
     "gmail": "https://mail.google.com",
     "maps": "https://maps.google.com",
     "spotify web": "https://open.spotify.com",
-    "cloud": "https://claude.ai",
+    "claude": "https://claude.ai",
     "poki games": "https://poki.com",
 }
 
@@ -494,7 +494,7 @@ def processCommand(command):
                     webbrowser.open(f"https://www.youtube.com/results?search_query={quote(song)}")
 
     # Wikipedia Search
-    elif "who is" in command or "what is" in command and "time" not in command and "date" not in command:
+    elif ("who is" in command or "what is" in command) and "time" not in command and "date" not in command and "weather" not in command and "news" not in command:
         topic = command.replace("who is", "").replace("what is", "").strip()
         speak(f"Searching Wikipedia for {topic}")
         page = wiki.page(topic)
@@ -516,7 +516,11 @@ def processCommand(command):
 
     # Weather
     elif "weather" in command:
-        city = command.replace("weather in", "").replace("weather", "").strip()
+        idx = command.find("weather") + len("weather")
+        city = command[idx:].strip()
+        for prefix in ("in ", "of ", "for ", "the "):
+            if city.startswith(prefix):
+                city = city[len(prefix):].strip()
         if not city:
             speak("Please tell me which city.")
         else:
@@ -698,6 +702,3 @@ if __name__ == "__main__":
             break
         except Exception as e:
             print("Error:", e)
-# git add .
-# git commit -m "yahan likho kya change kiya"
-# git push
