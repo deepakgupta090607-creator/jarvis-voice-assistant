@@ -85,7 +85,7 @@ WEBSITES = {
     "facebook": "https://www.facebook.com",
     "whatsapp web": "https://web.whatsapp.com",
     "twitter": "https://twitter.com",
-    "linkedin": "https://www.linkedin.com",
+    "linked": "https://www.linkedin.com",
     "reddit": "https://www.reddit.com",
     "netflix": "https://www.netflix.com",
     "amazon": "https://www.amazon.in",
